@@ -5,9 +5,16 @@ const Experience = () => {
   const [jobTitle, setJobTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [submittedForm, setSubmittedForm] = useState(null);
+  const handleSubmit = () =>{
+    const formData = {company,jobTitle,startDate,endDate}
 
+    setSubmittedForm(formData);
+
+  }
   return (
     <div>
+
       <h2>Experience</h2>
       <label>Company Name:</label>
       <input
@@ -34,7 +41,16 @@ const Experience = () => {
         onChange={(e) => setEndDate(e.target.value)}
       /><br />
       <input type="button" value="edit" />
-      <input type="submit" value="submit" />
+      <input type="submit" onClick={handleSubmit}value="submit" />
+      {submittedForm && (
+        <div>
+          <p>Company name: {submittedForm.company}</p>
+          <p>Job title: {submittedForm.jobTitle}</p>
+          <p>Start date: {submittedForm.startDate}</p>
+          <p>End date : {submittedForm.endDate}</p>
+          </div>
+
+      )}
     </div>
   );
 };

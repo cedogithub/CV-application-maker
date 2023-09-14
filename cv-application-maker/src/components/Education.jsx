@@ -4,6 +4,24 @@ const Education = () => {
   const [schoolName, setSchoolName] = useState('');
   const [study, setStudy] = useState('');
   const [graduationDate, setGraduationDate] = useState('');
+  const [submittedData, setSubmittedData] = useState(null);
+
+  const handleSubmit = () => {
+    // Collect form data
+    const formData = {
+      schoolName,
+      study,
+      graduationDate,
+    };
+
+    // Store the submitted data
+    setSubmittedData(formData);
+
+    // Clear form fields
+    setSchoolName('');
+    setStudy('');
+    setGraduationDate('');
+  };
 
   return (
     <div>
@@ -27,7 +45,16 @@ const Education = () => {
         onChange={(e) => setGraduationDate(e.target.value)}
       /><br />
       <input type="button" value="edit" />
-      <input type="submit" value="submit" />
+      <input type="submit" onClick={handleSubmit} value="submit" />
+
+      {/* Display submitted data */}
+      {submittedData && (
+        <div>
+          <p>School Name: {submittedData.schoolName}</p>
+          <p>Study: {submittedData.study}</p>
+          <p>Graduation Date: {submittedData.graduationDate}</p>
+        </div>
+      )}
     </div>
   );
 };
